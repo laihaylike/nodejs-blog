@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>
+        <%= title %> 
+    </title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container jumbotron mt-4" style="padding-left:200px; padding-right:200px;" >
+        <div class="mt-4">
+    <div>
+        <a href="/estored">Danh sách bài viết</a>
+      <h3>Bài viết đã xoá</h3>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tên sách</th>
+            <th scope="col">Tác giả</th>
+            <th scope="col">Thời gian xoá</th>
+            <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each contents}}
+            <tr>
+                <th scope="row">{{sum @index 1}}</th>
+                <td>{{this.name}}</td>
+                <td>{{this.author}}</td>
+                <td>{{this.createdAt}}</td>
+                <td>
+                    <a href="" class="btn btn-link btn-restore" data-id="{{this._id}}">Khôi phục</a>
+                    <a href="" class="btn btn-link" data-toggle="modal" data-ma="{{this._id}}" data-target="#delete-content-modal">Xoá vĩnh viễn</a>
+                </td>
+            </tr>
+            {{else}}
+              <tr>
+                <td colspan="5" class="text-center">
+                  Thùng rác trống. <a href="/estored">Danh sách khoá học</a>
+                </td>
+              </tr>
+            {{/each}}
+        </tbody>
+</table>
+</div>
+</div>
+
+<div id="delete-content-modal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Xoá bài viết</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Bạn có chắc chắn muốn xoá bài viết này</p>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-delete-content" type="button" class="btn btn-danger">Xoá bỏ</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<form name="delete-content-form" method="POST"></form>
+<form name="restore-content-form" method="POST"></form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function(){
+        var contentId;
+        var deleteForm = document.forms['delete-content-form'];
+        var restoreForm = document.forms['restore-content-form'];
+        var btnDeleteContent = document.getElementById('btn-delete-content');
+        var restoreBtn = $('.btn-restore');
+
+        $('#delete-content-modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            contentId = button.data('ma') // Extract info from data-* attributes
+        });
+
+        btnDeleteContent.onclick = function() {
+            deleteForm.action = '/' + contentId + '/force?_method=DELETE';
+            deleteForm.submit();
+        }
+
+        restoreBtn.click(function (e) {
+            e.preventDefault();
+            var cId = $(this).data('id');
+            restoreForm.action = '/' + cId + '/restore?_method=PATCH';
+            restoreForm.submit();
+        });
+    });
+</script>
+</body>
+</html>

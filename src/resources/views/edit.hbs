@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>
+        <%= title %> 
+    </title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container jumbotron mt-4" style="padding-left:200px; padding-right:200px;" >
+        <h2>Sửa sách</h2>
+        <form action="/{{contents._id}}?_method=PUT" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="name">Tên sách</label>
+                    <input type="text" class="form-control" value="{{contents.name}}" name="name" id="name">
+                </div>
+               <div class="form-group">
+                    <label for="author">Tác giả</label>
+                    <input type="text" class="form-control" value="{{contents.author}}" name="author" id="author">
+                </div>
+                <div class="form-group">
+                    <label for="author">Nội dung</label>
+                    <textarea class="form-control" name="con" id="con">{{contents.con}}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="avatar">Avatar</label>
+                    <input type="file" name="avatar" class="form-control-file">
+                    <input type="hidden" name="ii" maxlength="10" value="{{contents.avatar}}">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    
+    <link rel="stylesheet" href="/stylesheets/login.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="Login.css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row fadeInDown">
+            <form class="col-sm-4 border rounded-sm fadeIn first" action="/auths/lstore" method="POST">
+                <h3 class="fadeIn first">Login</h3>
+                <hr>
+                <!-- username -->
+                <!-- <div class="form-group fadeIn first">
+                    <label for="exampleInputEmail">Email</label>
+                    <input type="text" class="form-control" id="" name="Email" aria-describedby="Email"
+                        placeholder="Email" autocomplete="off">
+                </div> -->
+                {{#if loi}}
+                    <div class="alert alert-danger">
+                        {{loi}}
+                    </div>
+                {{/if}}
+                <div class="form-group fadeIn first">
+                    <label for="exampleInputEmail">Email</label>
+                    <input type="text" class="form-control" id="" name="email" aria-describedby="email"
+                        placeholder="Email" autocomplete="off">
+                </div>
+                <!-- Password -->
+                <div class="form-group fadeIn second">
+                    <label for="exampleInputTitle">Password</label>
+                    <input type="password" class="form-control" id="" name="password" aria-describedby="password"
+                        placeholder="password" autocomplete="off">
+                </div>
+                <hr>
+                <div class="pl-3 fadeIn third">
+                    <a href="https://www.facebook.com/">
+                        <i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.instagram.com/">
+                        <i class="fa fa-instagram fa-2x pl-2" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <hr>
+                <!-- Button Submit -->
+                <div class="text-center pb-3 fadeIn fourth">
+                   <button type="submit" class="btn btn-info btn-primary ">Login</button>
+                </div>
+                
+            </form>
+            <div class="col-sm-8 fadeIn fourth">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt eos laudantium labore accusantium, harum laboriosam ex. Quo ratione earum facilis exercitationem. Amet repellendus aut doloremque, ex quis ut blanditiis perspiciatis!
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>
